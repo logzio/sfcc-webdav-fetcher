@@ -4,16 +4,26 @@ A Docker image purpose-built to monitor Salesforce Commerce Cloud (fka Demandwar
 
 ## Usage
 
-1. Use the following docker command to run your container
+### 1. Pull the Docker image
+
+Use the following docker command to run your container
+
+Donwload the logzio/webdav-fetcher image:
 
 ```sh
 docker pull logzio/webdav-fetcher:latest
 ```
 
-2. Use the following docker command to run your container.
+### 2. Run the container
+
+Use the following docker command to run your container.
 
 ```sh
-docker run -d -e "LOGZIO_SHIPPING_KEY=<logzio_shipping_token>" -e "SFCC_HOSTNAME=<your_sfcc_host>" -e "SFCC_CLIENT_ID=<your_sfcc_client_id> -e SFCC_CLIENT_SECRET=<your_sfcc_client_secret> -e LOGZIO_LISTENER_URL=<logzio_listener_url> logzio/webdav-fetcher:latest
+docker run -d -e LOGZIO_SHIPPING_KEY=<logzio_shipping_token>  \
+-e SFCC_HOSTNAME=<your_sfcc_host> \
+-e SFCC_CLIENT_ID=<your_sfcc_client_id> \
+-e SFCC_CLIENT_SECRET=<your_sfcc_client_secret> \
+-e LOGZIO_LISTENER_URL=<logzio_listener_url> logzio/webdav-fetcher:latest
 ```
 
 | Parameter           | Description                                                                                                                                                                                                                                                                                                                                   | Required |
