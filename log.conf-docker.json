@@ -4,6 +4,7 @@
       "hostname": "ENV_SFCC_HOSTNAME",
       "client_id": "ENV_SFCC_CLIENT_ID",
       "client_secret": "ENV_SFCC_CLIENT_SECRET",
+	  "log_path": "ENV_SFCC_LOG_PATH",
       "polling_interval": 30
     }
   },

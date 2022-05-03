@@ -1,0 +1,72 @@
+{
+    "api": [
+        "pattern \\s*SCRIPT_METHOD:%{DATA:scriptMethod} in request/site %{DATA:site} pipeline %{DATA:pipeline} %{DATA:script}, %{NUMBER:invocations} time",
+        "pattern \\s*%{DATA:msg} in request/site %{DATA:site} pipeline %{DATA:pipeline} %{DATA:script}, %{NUMBER:invocations} time",
+        "pattern \\s*%{WORD:class} usage violation: TEMPLATE:%{DATA:template} KEY:\\s*%{GREEDYDATA:key}",
+        "pattern \\s*%{WORD:class} usage violation: %{DATA:details} TEMPLATE:\\s*%{DATA:template} SITE:\\s*%{GREEDYDATA:site}",
+        "pattern \\s*%{WORD:class} usage violation: %{DATA:details} PIPELINE:\\s*%{DATA:pipeline} SITE:\\s*%{GREEDYDATA:site}",
+        "pattern \\s*%{WORD:class} usage violation: %{DATA:details} PIPELET:\\s*%{DATA:pipelet} KEY:\\s*%{GREEDYDATA:key}"
+    ],
+    "analytics": [],
+    "codeprofiler": [],
+    "console": [],
+    "customdebug": [],
+    "customerror": [
+        "pattern ^%{LOGLEVEL:level} %{WORD:servlet}\\|%{NUMBER}\\|%{DATA:sitename}\\|%{DATA:action}\\|%{WORD:pipeline}\\|%{DATA:sessionid} %{DATA:custom_logger}\\s+%{WTF}?\\s*%{GREEDYDATA:msg}",
+        "pattern ^%{LOGLEVEL:level}\\s%{WORD}\\/|%{NUMBER}\\s%{DATA:custom_logger}\\s%{WTF}?%{GREEDYDATA:msg}",
+        "pattern ^%{LOGLEVEL:level} %{DATA:threadid} %{DATA:custom_logger}\\s+%{WTF}?%{GREEDYDATA:msg}",
+        "pattern ^%{LOGLEVEL:level}\\s*%{WTF}?%{GREEDYDATA:msg}"
+    ],
+
+    "customfatal": [],
+    "custominfo": [],
+    "customwarn": [],
+    "debug": [
+        "pattern ^%{LOGLEVEL:level} %{WORD:servlet}\\|%{NUMBER}\\|%{DATA:sitename}\\|%{DATA:action}\\|%{WORD:pipeline}\\|%{DATA:sessionid} %{DATA} %{DATA} %{DATA} %{DATA} %{DATA} %{DATA} %{DATA}\\s+%{WTF}?%{GREEDYDATA:msg}"
+    ],
+    "deprecation": [],
+    "error": [
+        "pattern ^%{LOGLEVEL:level} %{WORD:servlet}\\|%{NUMBER}\\|%{DATA:sitename}\\|%{DATA:action}\\|%{WORD:pipeline}\\|%{DATA:sessionid} %{DATA} %{DATA} %{DATA} %{DATA} %{DATA} %{DATA} %{DATA}\\s+%{WTF}?%{GREEDYDATA:msg}",
+        "pattern ^%{LOGLEVEL:level} %{WORD:servlet}\\|%{NUMBER}(\\|%{DATA:path})? %{DATA:class} %{DATA:sitename} %{WORD} %{DATA:sessionid} %{DATA} %{DATA}\\s+-\\s+%{GREEDYDATA:msg}",
+        "pattern ^%{LOGLEVEL:level} %{DATA:threadid} %{DATA:class} %{DATA:sitename} %{WORD} %{DATA:sessionid} %{DATA} %{DATA}\\s*-\\s*%{GREEDYDATA:msg}",
+        "pattern ^%{LOGLEVEL:level} %{WORD:servlet}\\|%{NUMBER} %{DATA:class}(\\s-)+\\s+%{NUMBER}\\s+-\\s+%{GREEDYDATA:msg}",
+        "pattern ^%{LOGLEVEL:level} %{DATA:threadid} %{DATA:class}(\\s-)+ %{NUMBER}\\s*-?\\s*%{GREEDYDATA:msg}"
+    ],
+    "fatal": [],
+    "info": [
+        "pattern ^%{LOGLEVEL:level} %{DATA:threadid} %{DATA:class}(\\s-)+ %{NUMBER}(\\s-)*\\s*%{GREEDYDATA:msg}"
+    ],
+    "jobs": [
+        "pattern \\A%{SYSLOG5424SD} Created Job configuration for Schedule \\[%{NOTCOMMA:ScheduleName}, %{NOTBRACKET:ScheduleID}\\]",
+        "pattern \\A%{SYSLOG5424SD} Created Job configuration for domain \\[%{NOTBRACKET:DomainName}\\]\\. Job type \\[%{BASE10NUM:JobTypeNumber}\\]\\. Job Configuration \\[, %{NOTBRACKET:JobConfigurationID}\\]",
+        "pattern \\A%{SYSLOG5424SD} Started executing job pipeline\\. Schedule \\[%{NOTCOMMA:ScheduleName}, %{WORD:ScheduleID}\\]\\. Job configuration \\[%{NOTCOMMA:JobConfigurationName}, %{NOTBRACKET:JobConfigurationID}\\]\\. Domain \\[%{NOTBRACKET:DomainName}\\]",
+        "pattern \\A%{SYSLOG5424SD} I will not run schedule \\[%{NOTCOMMA:ScheduleName}, %{NOTBRACKET:JobConfigurationID}\\]\\. Reason \\[%{NOTBRACKET:ReasonForNotRunningSchedule}\\]",
+        "pattern \\A%{SYSLOG5424SD} Job \\[%{NOTCOMMA:ScheduleName}, %{NOTCOMMA:ScheduleID}, %{NOTCOMMA:JobConfigurationID}, %{NOTBRACKET:sitename}\\] has \\[%{BASE10NUM:NumberOfResourcesAssociatedWithJob}\\] resources associated with it\\. ThreadId \\[%{NOTPIPE:ThreadName}\\|%{BASE10NUM:ThreadID}\\|%{NOTPIPE:NiceName}\\|%{NOTBRACKET:CodeName}\\[%{BASE10NUM:NumberAfterCodeName}\\]\\]",
+        "pattern \\A%{SYSLOG5424SD} Job \\[%{NOTCOMMA:JobConfigurationName}, %{NOTCOMMA:JobConfigurationID}, %{NOTBRACKET:sitename}\\] Execute pipeline\\. PipeLine: %{NOTCOMMA:PipeLineName}, ThreadId: %{NOTPIPE:ThreadName}\\|%{BASE10NUM:ThreadID}\\|%{NOTPIPE:NiceName}\\|%{NOTBRACKET:CodeName}\\[%{BASE10NUM:NumberAfterCodeName}\\], User: %{WORD:UserName}",
+        "pattern \\A%{SYSLOG5424SD} Job \\[%{NOTCOMMA:JobConfigurationName}, %{NOTCOMMA:JobConfigurationID}, %{NOTBRACKET:sitename}\\] Done executing pipeline\\. PipeLine: %{NOTCOMMA:PipeLineName}, ThreadId: %{NOTPIPE:ThreadName}\\|%{BASE10NUM:ThreadID}\\|%{NOTPIPE:NiceName}\\|%{NOTBRACKET:CodeName}\\[%{BASE10NUM:NumberAfterCodeName}\\]",
+        "pattern \\A%{SYSLOG5424SD} Job \\[%{NOTCOMMA:JobConfigurationName}, %{NOTCOMMA:JobConfigurationID}, %{NOTBRACKET:sitename}\\] total execution time %{BASE10NUM:TotalJobExecutionTime} ms\\.",
+        "pattern \\A%{SYSLOG5424SD} Job \\[%{NOTCOMMA:ScheduleName}, %{NOTBRACKET:ScheduleID}\\], Submitting Job Schedule for execution. ThreadId \\[%{NOTBRACKET:ThreadName}\\[%{BASE10NUM:NumberAfterThreadName}\\]\\]",
+        "pattern \\A%{SYSLOG5424SD} Monitor could not be locked for Job \\[%{NOTCOMMA:ScheduleName}, %{NOTBRACKET:JobConfigurationID}\\]\\. ThreadId: %{NOTPIPE:ThreadName}\\|%{BASE10NUM:ThreadID}\\[%{BASE10NUM:NumberAfterThreadID}\\]",
+        "pattern \\A%{SYSLOG5424SD} Hung job detection. Job \\[%{NOTCOMMA:ScheduleName}, %{NOTBRACKET:ScheduleID}\\] does not appear to hang. Action \\[%{NOTBRACKET:Action}\\]"
+    ],
+    "migration": [],
+    "performance": [],
+    "quota": [
+        "pattern ^\\[%{WORD:servlet}\\|%{NUMBER}\\|%{DATA:sitename}\\|%{DATA:action}\\|PipelineCall\\|%{DATA:sessionid}\\] %{GREEDYDATA:msg}",
+        "pattern ^\\[[^]]+\\] %{GREEDYDATA:msg}"
+    ],
+    "sql": [],
+    "staging": [
+        "pattern ^%{LOGLEVEL:level} %{WORD:servlet}\\|%{NUMBER}\\|%{DATA:sitename}\\|%{DATA:action}\\|%{WORD:pipeline}\\|%{DATA:sessionid} %{DATA} %{DATA} %{DATA} %{DATA} %{DATA} %{DATA} %{DATA}\\s+%{WTF}?%{GREEDYDATA:msg}",
+        "pattern ^%{DATA:threadid}\\|%{NUMBER}\\|%{DATA:sitename}\\|%{DATA:action}\\s+%{GREEDYDATA:msg}",
+        "pattern ^(%{LOGLEVEL:level} )?%{DATA:threadid}\\s+%{GREEDYDATA:msg}"
+    ],
+    "sysevent": [],
+    "syslog": [],
+    "warn": [
+        "pattern ^%{LOGLEVEL:level} %{DATA:threadid}\\|%{NUMBER}\\|%{DATA:job}\\|%{DATA:action} %{DATA:class}\\s+%{WORD} JOB %{BASE16NUM} %{BASE16NUM} %{BASE16NUM}\\s+(-\\s*)?%{GREEDYDATA:msg}",
+        "pattern ^%{LOGLEVEL:level} %{WORD:servlet}\\|%{NUMBER}\\|%{DATA:sitename}\\|%{DATA:action}\\|%{WORD:pipeline}\\|%{DATA:sessionid} %{DATA:class}\\s+%{DATA} STOREFRONT %{DATA} %{DATA} %{DATA}\\s+(-\\s*)?%{GREEDYDATA:msg}",
+        "pattern ^%{LOGLEVEL:level} %{DATA:threadid} %{DATA:class}\\s+system JOB %{BASE16NUM} %{BASE16NUM}\\s+%{BASE16NUM}\\s+(-\\s*)?%{GREEDYDATA:msg}",
+        "pattern ^%{LOGLEVEL:level} %{DATA:threadid} %{DATA:class}(\\s-)*\\s+%{NUMBER}(\\s-)*\\s+%{GREEDYDATA:msg}"
+    ]
+}

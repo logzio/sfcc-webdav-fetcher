@@ -41,11 +41,40 @@ If you prefer to store these environment variables in a file like [this example]
 docker run -d --env-file=variables.env logzio/webdav-fetcher:latest
 ```
 
+### 3. Grok patterns
+
+Based on [fluentD-grok-parser](fluent-plugin-grok-parser) you have option to manage grok patterns base on log types.<br/>
+Log types is: `analytics`, `api`, `codeprofiler`, `console`, `customdebug`, `customerror`, `customfatal`, `custominfo`, `customwarn`, `debug`, `deprecation`, `error`, `fatal`, `info`, `jobs`, `migration`, `performance`, `quota`, `sql`, `staging`, `sysevent`, `syslog`, `warn`
+
+You can download sample of grok patterns(file `example.grokPatternList.json`) on you folder where you will run docker image, there you can fill your grok patterns based on log types. For example:
+
+```
+ "debug": [
+        "pattern ^%{LOGLEVEL:level} %{WORD:servlet}\\|%{NUMBER}\\|%{DATA:sitename}\\|%{DATA:action}\\|%{WORD:pipeline}\\|%{DATA:sessionid} %{DATA} %{DATA} %{DATA} %{DATA} %{DATA} %{DATA} %{DATA}\\s+%{WTF}?%{GREEDYDATA:message}"
+    ]
+```
+
+### 4. Apply grok patterns
+
+For appling grok patterns we need to mount `grokPatternList.json` file to the image
+
+```sh
+docker run -d -e LOGZIO_SHIPPING_TOKEN=<logzio_shipping_token>  \
+-v $(pwd)/example.grokPatternsList.json:/grokPatternsList.json
+-e LOGZIO_LISTENER_URL=<logzio_listener_url> \
+-e SFCC_HOSTNAME=<your_sfcc_host> \
+-e SFCC_CLIENT_ID=<your_sfcc_client_id> \
+-e SFCC_CLIENT_SECRET=<your_sfcc_client_secret> \
+logzio/webdav-fetcher:latest
+```
+
 ## Change log
 
-- 1.0.0:
-  - Docker based solution
-  - Collect and sends webdav logs
+-   1.1.0:
+    -   Option to manage grok patterns via JSON file.
+-   1.0.0:
+    -   Docker based solution
+    -   Collect and sends webdav logs
 
 ## License
 

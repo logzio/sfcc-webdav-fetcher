@@ -4,6 +4,7 @@ USER root
 RUN apk add --no-cache --update git \
 	&& git clone https://github.com/openmindlab/cctail.git cctail
 
+
 WORKDIR /cctail
 RUN npm install
 
@@ -25,5 +26,8 @@ COPY fluent.conf /fluentd/etc/
 COPY supervisord.conf /etc/supervisord.conf
 COPY --from=0 cctail cctail
 COPY log.conf-docker.json ./log.conf.json
+COPY app.js /app.js
 
 ENV LOGZIO_SLOW_FLUSH_LOG_THRESHOLD "20.0"
+
+CMD [ "node", "app.js" ]
