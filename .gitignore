@@ -4,4 +4,4 @@ log.conf.json
 scratchpad.txt
 sfcc-test*.env
 /fluentd/etc/*
-grokPatternList.json
+/cctail-fork
