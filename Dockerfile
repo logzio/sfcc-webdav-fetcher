@@ -1,10 +1,9 @@
 FROM node:current-alpine
 USER root
 
-# RUN apk add --no-cache --update git \
-# 	&& git clone https://github.com/logzio/cctail.git cctail
+RUN apk add --no-cache --update git \
+	&& git clone https://github.com/logzio/cctail.git cctail
 
-ADD /cctail-fork /cctail
 
 WORKDIR /cctail
 RUN npm install
