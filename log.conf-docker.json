@@ -1,10 +1,10 @@
 {
     "profiles": {
         "sfcc": {
-            "hostname": "ENV_SFCC_HOSTNAME",
+            "hostname": "ENV_SFCC_SERVER_NAME",
             "client_id": "ENV_SFCC_CLIENT_ID",
             "client_secret": "ENV_SFCC_CLIENT_SECRET",
-            "log_security": "ENV_SFCC_LOG_PATH",
+            "log_source": "ENV_SFCC_LOG_SOURCE",
             "polling_interval": 30
         }
     },

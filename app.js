@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-const isParsing = process.env.AUTO_PARSING === 'true' ? true : false;
+const isAutoParsing = process.env.AUTO_PARSING === 'true' ? true : false;
 
 const pathCustom = 'grokPatternList.json';
 const pathInternal = 'grokPatternListInternal.json';
@@ -49,7 +49,7 @@ const initParsing = (path) => {
 };
 
 // Initialize parsing
-if (isParsing) {
+if (isAutoParsing) {
     initParsing(pathInternal);
 } else {
     initParsing(pathCustom);
