@@ -3,3 +3,5 @@
 log.conf.json
 scratchpad.txt
 sfcc-test*.env
+/fluentd/etc/*
+/cctail-fork
