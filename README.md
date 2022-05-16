@@ -47,7 +47,7 @@ docker run -d --env-file=variables.env logzio/webdav-fetcher:latest
 Based on [fluentD-grok-parser](fluent-plugin-grok-parser) you have option to manage grok patterns base on log types.<br/>
 Log types is: `analytics`, `api`, `codeprofiler`, `console`, `customdebug`, `customerror`, `customfatal`, `custominfo`, `customwarn`, `debug`, `deprecation`, `error`, `fatal`, `info`, `jobs`, `migration`, `performance`, `quota`, `sql`, `staging`, `sysevent`, `syslog`, `warn`,`service`, `syslog`
 
-We are prepared grok-patterns for you. You can use if define env. variable as `AUTO_PARSING` for `true` value(by default is `false`). But if you want to define your own grok patterns, you can download sample of grok patterns(file `example.grokPatternList.json`) on you folder where you will run docker image, there you can fill your grok patterns based on log types. For example:
+You can use our prebuilt grok patterns by setting the `AUTO_PARSING` environment variable to true. If you would like to define your own grok patterns you can do this by downloading the sample grok pattern file to the directory where you are running the docker image and edit it accordingly. For example:
 
 ```
      "service": [
