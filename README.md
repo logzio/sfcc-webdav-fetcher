@@ -70,7 +70,10 @@ logzio/sfcc-logs-fetcher:latest
 ```
 
 ## Change log
-
+-   1.2.-:
+    - Update dependenies:
+      - fluent/fluentd:v1.16-1
+      - node:18-alpine3.18
 -   1.1.0:
     -   Option to manage grok patterns via JSON file.
 -   1.0.0:
