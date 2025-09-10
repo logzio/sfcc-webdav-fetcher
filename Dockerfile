@@ -1,4 +1,4 @@
-FROM node:current-alpine
+FROM node:18-alpine3.18
 USER root
 
 RUN apk add --no-cache --update git \
@@ -8,12 +8,13 @@ RUN apk add --no-cache --update git \
 WORKDIR /cctail
 RUN npm install
 
-FROM fluent/fluentd:edge
+FROM fluent/fluentd:v1.16-1
 USER root
 
 RUN apk add --no-cache --update --virtual .build-deps \
 	sudo build-base ruby-dev \
 	&& apk add --update nodejs supervisor \
+	&& apk upgrade zlib \
 	&& sudo gem install fluent-plugin-logzio fluent-plugin-grok-parser \
 	&& sudo gem sources --clear-all \
 	&& apk del .build-deps \
