@@ -70,7 +70,7 @@ logzio/sfcc-logs-fetcher:latest
 ```
 
 ## Change log
--   1.2.-:
+-   1.2.0:
     - Update dependenies:
       - fluent/fluentd:v1.16-1
       - node:18-alpine3.18
